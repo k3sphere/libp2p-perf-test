@@ -12,12 +12,10 @@ import (
 	"time"
 
 	"github.com/libp2p/go-libp2p"
-	"github.com/libp2p/go-libp2p-core/network"
-	"github.com/libp2p/go-libp2p-core/peer"
-	"github.com/libp2p/go-libp2p-core/protocol"
+	"github.com/libp2p/go-libp2p/core/network"
+	"github.com/libp2p/go-libp2p/core/peer"
+	"github.com/libp2p/go-libp2p/core/protocol"
 
-	quic "github.com/libp2p/go-libp2p-quic-transport"
-	tcp "github.com/libp2p/go-tcp-transport"
 	ma "github.com/multiformats/go-multiaddr"
 )
 
@@ -45,16 +43,15 @@ func main() {
 
 	ctx := context.Background()
 
-	host, err := libp2p.New(ctx,
+	host, err := libp2p.New(
 		libp2p.NoListenAddrs,
-		libp2p.Transport(tcp.NewTCPTransport),
-		libp2p.Transport(quic.NewTransport),
+		libp2p.DefaultTransports,
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Printf("Connecting to %s", pi.ID.Pretty())
+	log.Printf("Connecting to %s", pi.ID.String())
 
 	cctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 	defer cancel()
@@ -73,7 +70,7 @@ func main() {
 		}
 		defer s.Close()
 
-		file, err := os.OpenFile("/dev/null", os.O_WRONLY, 0)
+		file, err := os.OpenFile("test.iso", os.O_WRONLY, 0)
 		if err != nil {
 			log.Fatal(err)
 		}

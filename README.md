@@ -45,3 +45,10 @@ $ test-client /ip4/192.168.2.4/udp/4001/quic/p2p/QmSfCAZ7kq8m3yuWip2gC6cE5Yrpxtw
 2020/06/04 20:59:28 Transfering data...
 2020/06/04 20:59:38 Received 1073741824 bytes in 9.798873952s
 ```
+
+telenor Broadband 1000M/1000M
+Vultr server stockholm
+
+Received 6343219200 bytes in 57.701024s.
+Received 6343219200 bytes in 56.871412s
+in my case, I got around  900 Mbps for tcp between vultr server to my home
